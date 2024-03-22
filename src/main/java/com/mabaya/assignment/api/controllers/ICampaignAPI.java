@@ -2,6 +2,7 @@ package com.mabaya.assignment.api.controllers;
 
 import com.mabaya.assignment.api.dto.CreateCampaignDTO;
 import com.mabaya.assignment.api.dto.ServerAdDTO;
+import com.mabaya.assignment.api.dto.ServerAdRequestParams;
 import com.mabaya.assignment.entities.Campaign;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,9 @@ public interface ICampaignAPI {
     @PostMapping("/create/campaign")
     @ResponseStatus(HttpStatus.OK)
     CreateCampaignDTO createCampaign(@RequestBody Campaign campaign);
-    @PostMapping("/server/add")
+
+    @PostMapping("/serve/ad")
     @ResponseStatus(HttpStatus.OK)
-    ServerAdDTO serverAd(@RequestBody Campaign campaign);
+    ServerAdDTO serverAd(@RequestBody ServerAdRequestParams serverAdRequestParams);
+
 }

@@ -3,10 +3,8 @@ package com.mabaya.assignment.services;
 import com.google.common.collect.Lists;
 import com.mabaya.assignment.entities.Campaign;
 import com.mabaya.assignment.entities.DataBase;
+import com.mabaya.assignment.entities.Product;
 import jakarta.annotation.PostConstruct;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +22,25 @@ public class DataBaseService {
     @PostConstruct
     public void onInit(){
         ArrayList<Campaign> initialCampaignsForTestingPurposes = Lists.newArrayList();
-        initialCampaignsForTestingPurposes.add(Campaign.builder().name("campaign1").bid(30).isActive(true).build());
-        initialCampaignsForTestingPurposes.add(Campaign.builder().name("campaign2").bid(40).isActive(true).build());
+        Product product1 = Product.builder().price(4).title("product1").serialNumber("0001").category("clothes").build();
+        Product product2 = Product.builder().price(7).title("product2").serialNumber("0002").category("clothes").build();
+        Product product3 = Product.builder().price(11).title("product3").serialNumber("0003").category("clothes").build();
+        initialCampaignsForTestingPurposes.add(
+            Campaign.builder()
+            .name("campaign1")
+            .bid(30)
+            .products(Lists.newArrayList(product1))
+            .isActive(true)
+            .build()
+        );
+        initialCampaignsForTestingPurposes.add(
+            Campaign.builder()
+            .name("campaign2")
+            .bid(40)
+            .isActive(true)
+                    .products(Lists.newArrayList(product2, product3))
+            .build()
+        );
         dataBase.setDb(initialCampaignsForTestingPurposes);
     }
 
